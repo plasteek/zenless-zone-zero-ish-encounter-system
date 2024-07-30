@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck6mdlx04y2v8"]
+
+[ext_resource type="Script" path="res://scenes/root.gd" id="1_aa2fw"]
+[ext_resource type="Script" path="res://scripts/example_encounter.gd" id="2_puwmv"]
+[ext_resource type="Script" path="res://scripts/encounter_player.gd" id="3_8qt0c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tqixd"]
+
+[node name="root" type="Node2D"]
+script = ExtResource("1_aa2fw")
+
+[node name="EncounterPlayer" type="Node" parent="." node_paths=PackedStringArray("encounterSprite", "encounter")]
+script = ExtResource("3_8qt0c")
+encounterName = "Something"
+encounterSprite = NodePath("Sprite2D")
+encounter = NodePath("ExampleEncounter")
+
+[node name="ExampleEncounter" type="Node" parent="EncounterPlayer" node_paths=PackedStringArray("encounter")]
+script = ExtResource("2_puwmv")
+encounter = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="EncounterPlayer"]
+texture = SubResource("CanvasTexture_tqixd")
+
+[node name="Description" type="Label" parent="."]
+offset_right = 1154.0
+offset_bottom = 420.0
+
+[node name="Options" type="VBoxContainer" parent="."]
+offset_top = 505.0
+offset_right = 1154.0
+offset_bottom = 647.0
